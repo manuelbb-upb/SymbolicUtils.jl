@@ -194,3 +194,10 @@ Base.length(x::Symbolic{<:Number}) = 1
 Base.ndims(x::Symbolic{T}) where {T} = Base.ndims(T)
 Base.ndims(::Type{<:Symbolic{T}}) where {T} = Base.ndims(T)
 Base.broadcastable(x::Symbolic{T}) where {T<:Number} = Ref(x)
+function Base.broadcastable(x::Term{>:Any})
+    if operation(x) == Ref
+        return Ref(first(arguments(x)))
+    else
+        return Ref(x)
+    end
+end
