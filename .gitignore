@@ -7,3 +7,4 @@ benchmark/tune.json
 scratch.jl
 profile.*
 statprof/
+.vscode/settings.json
